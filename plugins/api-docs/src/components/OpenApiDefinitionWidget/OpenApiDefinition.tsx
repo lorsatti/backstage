@@ -16,6 +16,7 @@
 
 import { makeStyles } from '@material-ui/core/styles';
 import React, { useEffect, useState } from 'react';
+import { CommonValidatorFunctions } from '@backstage/catalog-model';
 import SwaggerUI from 'swagger-ui-react';
 import 'swagger-ui-react/swagger-ui.css';
 
@@ -145,6 +146,14 @@ export const OpenApiDefinition = ({ definition }: OpenApiDefinitionProps) => {
     const timer = setTimeout(() => setDef(definition), 0);
     return () => clearTimeout(timer);
   }, [definition, setDef]);
+
+  if (CommonValidatorFunctions.isValidUrl(def)) {
+    return (
+      <div className={classes.root}>
+        <SwaggerUI url={def} />
+      </div>
+    );
+  }
 
   return (
     <div className={classes.root}>
