@@ -188,6 +188,12 @@ export async function textPlaceholderResolver(
   return await readTextLocation(params);
 }
 
+export async function urlPlaceholderResolver(
+  params: PlaceholderResolverParams,
+): Promise<JsonValue> {
+  return relativeUrl(params);
+}
+
 /*
  * Helpers
  */
