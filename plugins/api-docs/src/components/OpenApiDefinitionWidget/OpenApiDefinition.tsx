@@ -133,9 +133,13 @@ const useStyles = makeStyles(theme => ({
 
 export type OpenApiDefinitionProps = {
   definition: string;
+  definitionUrl?: string;
 };
 
-export const OpenApiDefinition = ({ definition }: OpenApiDefinitionProps) => {
+export const OpenApiDefinition = ({
+  definition,
+  definitionUrl,
+}: OpenApiDefinitionProps) => {
   const classes = useStyles();
 
   // Due to a bug in the swagger-ui-react component, the component needs
@@ -143,11 +147,22 @@ export const OpenApiDefinition = ({ definition }: OpenApiDefinitionProps) => {
   const [def, setDef] = useState('');
 
   useEffect(() => {
-    const timer = setTimeout(() => setDef(definition), 0);
+    const timer = setTimeout(
+      () =>
+        setDef(
+          definitionUrl && CommonValidatorFunctions.isValidUrl(definitionUrl)
+            ? definitionUrl
+            : definition,
+        ),
+      0,
+    );
     return () => clearTimeout(timer);
-  }, [definition, setDef]);
+  }, [definition, definitionUrl, setDef]);
 
-  if (CommonValidatorFunctions.isValidUrl(def)) {
+  // eslint-disable-next-line no-console
+  console.info(`definitionUrl: ${definitionUrl}`);
+
+  if (CommonValidatorFunctions.isValidUrl(definitionUrl)) {
     return (
       <div className={classes.root}>
         <SwaggerUI url={def} />

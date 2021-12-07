@@ -27,6 +27,7 @@ const LazyOpenApiDefinition = React.lazy(() =>
 
 export type OpenApiDefinitionWidgetProps = {
   definition: string;
+  definitionUrl?: string;
 };
 
 export const OpenApiDefinitionWidget = (

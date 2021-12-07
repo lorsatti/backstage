@@ -21,7 +21,7 @@ import { OpenApiDefinitionWidget } from '../OpenApiDefinitionWidget';
 export type ApiDefinitionWidget = {
   type: string;
   title: string;
-  component: (definition: string) => React.ReactElement;
+  component: (definition: string, definitionUrl?: string) => React.ReactElement;
   rawLanguage?: string;
 };
 
@@ -31,8 +31,11 @@ export function defaultDefinitionWidgets(): ApiDefinitionWidget[] {
       type: 'openapi',
       title: 'OpenAPI',
       rawLanguage: 'yaml',
-      component: definition => (
-        <OpenApiDefinitionWidget definition={definition} />
+      component: (definition, definitionUrl) => (
+        <OpenApiDefinitionWidget
+          definition={definition}
+          definitionUrl={definitionUrl}
+        />
       ),
     },
     {

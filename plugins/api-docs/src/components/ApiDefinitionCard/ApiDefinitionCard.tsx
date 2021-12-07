@@ -44,7 +44,10 @@ export const ApiDefinitionCard = (_: Props) => {
     return (
       <TabbedCard title={entity.metadata.name}>
         <CardTab label={definitionWidget.title} key="widget">
-          {definitionWidget.component(entity.spec.definition)}
+          {definitionWidget.component(
+            entity.spec.definition,
+            entity.spec.definitionUrl,
+          )}
         </CardTab>
         <CardTab label="Raw" key="raw">
           <PlainApiDefinitionWidget
