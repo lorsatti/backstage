@@ -56,7 +56,6 @@ import { RepoLocationAnalyzer } from '../ingestion/LocationAnalyzer';
 import {
   jsonPlaceholderResolver,
   textPlaceholderResolver,
-  urlPlaceholderResolver,
   yamlPlaceholderResolver,
 } from '../ingestion/processors/PlaceholderProcessor';
 import { defaultEntityDataParser } from '../ingestion/processors/util/parse';
@@ -431,7 +430,6 @@ export class NextCatalogBuilder {
       json: jsonPlaceholderResolver,
       yaml: yamlPlaceholderResolver,
       text: textPlaceholderResolver,
-      url: urlPlaceholderResolver,
       ...this.placeholderResolvers,
     };
 
